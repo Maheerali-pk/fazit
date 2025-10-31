@@ -1,0 +1,1579 @@
+import { worldIcon } from "./icons";
+import { getFlagUrl, getStateFlagUrl } from "./utils";
+
+export interface IState {
+   name: string;
+   flag?: string;
+   count: number;
+   id: string;
+   isIcon?: boolean;
+   icon?: React.ReactNode;
+   countryId: string;
+}
+
+export interface ICountry {
+   name: string;
+   flag?: string;
+   count: number;
+   id: string;
+   isIcon?: boolean;
+   icon?: React.ReactNode;
+   countryCode?: string;
+}
+
+export interface IVideoItem {
+   id: number;
+   label: string;
+   title: string;
+   image: string;
+}
+
+export interface IChannel {
+   id: string;
+   name: string;
+   logo: string;
+   rank: string;
+   visitors: string;
+   articles: string;
+}
+
+// Country data with ISO codes and names for the countries matching our icon files
+export const countryData: { code: string; name: string }[] = [
+   { code: "US", name: "United States" },
+   { code: "GB", name: "United Kingdom" },
+   { code: "DE", name: "Germany" },
+   { code: "FR", name: "France" },
+   { code: "IT", name: "Italy" },
+   { code: "ES", name: "Spain" },
+   { code: "CA", name: "Canada" },
+   { code: "AU", name: "Australia" },
+   { code: "JP", name: "Japan" },
+   { code: "KR", name: "South Korea" },
+   { code: "CN", name: "China" },
+   { code: "IN", name: "India" },
+   { code: "BR", name: "Brazil" },
+   { code: "MX", name: "Mexico" },
+   { code: "RU", name: "Russia" },
+   { code: "ZA", name: "South Africa" },
+   { code: "EG", name: "Egypt" },
+   { code: "NG", name: "Nigeria" },
+   { code: "AR", name: "Argentina" },
+   { code: "CO", name: "Colombia" },
+   { code: "PT", name: "Portugal" },
+   { code: "NL", name: "Netherlands" },
+   { code: "BE", name: "Belgium" },
+   { code: "SE", name: "Sweden" },
+   { code: "CH", name: "Switzerland" },
+   { code: "GR", name: "Greece" },
+   { code: "TR", name: "Turkey" },
+   { code: "SA", name: "Saudi Arabia" },
+   { code: "AE", name: "UAE" },
+   { code: "TH", name: "Thailand" },
+   { code: "VN", name: "Vietnam" },
+   { code: "MY", name: "Malaysia" },
+   { code: "ID", name: "Indonesia" },
+   { code: "PH", name: "Philippines" },
+   { code: "UA", name: "Ukraine" },
+   { code: "CZ", name: "Czech Republic (Czechia)" },
+   { code: "RO", name: "Romania" },
+   { code: "HU", name: "Hungary" },
+   { code: "CL", name: "Chile" },
+   { code: "PE", name: "Peru" },
+   { code: "PK", name: "Pakistan" },
+   { code: "DZ", name: "Algeria" },
+   { code: "AO", name: "Angola" },
+   { code: "BD", name: "Bangladesh" },
+   { code: "BY", name: "Belarus" },
+   { code: "BJ", name: "Benin" },
+   { code: "BO", name: "Bolivia" },
+   { code: "BF", name: "Burkina Faso" },
+   { code: "BI", name: "Burundi" },
+   { code: "KH", name: "Cambodia" },
+];
+
+// Generate random count between min and max
+const getRandomCount = (min: number = 100, max: number = 1000): number => {
+   return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// Generate the countries array with the world icon first, then all countries from our local icons
+export const countries: ICountry[] = [
+   {
+      name: "All",
+      isIcon: true,
+      icon: worldIcon,
+      count: 5000,
+      id: "0",
+      flag: "/images/flags/world.svg",
+   },
+   ...countryData.map((country, index) => ({
+      name: country.name,
+      // Keep the API flag URL as a fallback, but we'll primarily use our local icons
+      flag: getFlagUrl(country.code),
+      count: getRandomCount(),
+      id: (index + 1).toString(),
+      countryCode: country.code,
+   })),
+];
+
+export const allVideoItems: IVideoItem[] = [
+   {
+      id: 1,
+      label: "Trump",
+      title: "Who will be next president of the United States?",
+      image: "/images/videos/video1.png",
+   },
+   {
+      id: 2,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video2.png",
+   },
+   {
+      id: 3,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video3.png",
+   },
+   {
+      id: 4,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video4.png",
+   },
+   {
+      id: 5,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video5.png",
+   },
+   {
+      id: 6,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video7.png",
+   },
+
+   {
+      id: 7,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video8.png",
+   },
+   {
+      id: 8,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video10.png",
+   },
+   {
+      id: 9,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video9.png",
+   },
+   {
+      id: 10,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video11.png",
+   },
+   {
+      id: 11,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video12.png",
+   },
+   {
+      id: 12,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video13.png",
+   },
+   {
+      id: 13,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video14.png",
+   },
+   {
+      id: 14,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video15.png",
+   },
+   {
+      id: 15,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video16.png",
+   },
+   {
+      id: 16,
+      label: "Trump",
+      title: "Who will be next president of the United States",
+      image: "/images/videos/video17.png",
+   },
+];
+
+export const allChannels: IChannel[] = [
+   {
+      id: "1",
+      name: "CNN",
+      logo: "/images/websites/cnn.png",
+      rank: "(1)",
+      visitors: "1432",
+      articles: "2344",
+   },
+   {
+      id: "2",
+      name: "AlJazeera",
+      logo: "/images/websites/aljazera.png",
+      rank: "(1)",
+      visitors: "1432",
+      articles: "2344",
+   },
+   {
+      id: "3",
+      name: "Fox",
+      logo: "/images/websites/foxnews.png",
+      rank: "(1)",
+      visitors: "1432",
+      articles: "2344",
+   },
+   {
+      id: "4",
+      name: "BBC",
+      logo: "/images/websites/bbc.png",
+      rank: "(1)",
+      visitors: "1432",
+      articles: "2344",
+   },
+   {
+      id: "5",
+      name: "Geo",
+      logo: "/images/websites/geo.png",
+      rank: "(1)",
+      visitors: "1432",
+      articles: "2344",
+   },
+   {
+      id: "6",
+      name: "CBS",
+      logo: "/images/websites/cbs.png",
+      rank: "(1)",
+      visitors: "1432",
+      articles: "2344",
+   },
+];
+
+// Create a function to ensure IDs are sequential
+const createSequentialIds = (items: any[]): any[] => {
+   return items.map((item, index) => ({
+      ...item,
+      id: index + 1,
+   }));
+};
+
+// Original news items array
+export const allNewsItems: INewsItem[] = [
+   {
+      id: 1,
+      source: "www.techcrunch.com",
+      categories: ["technology", "ai"],
+      date: "Oct, 8, 2025",
+      title: "AI Breakthrough: New Model Achieves Human-Level Understanding",
+      description:
+         "Researchers at leading AI laboratories have unveiled a groundbreaking artificial intelligence system that demonstrates unprecedented comprehension abilities across multiple domains. The new model, called GPT-5, has achieved human-level performance in reading comprehension, mathematical reasoning, and creative writing tasks. Unlike previous AI systems that excel in narrow domains, this model shows remarkable versatility, able to understand context, nuance, and even humor in ways that were previously impossible for machines. The system was trained on a diverse dataset spanning scientific literature, literature, news articles, and human conversations. Early tests show the AI can engage in complex philosophical discussions, solve advanced mathematical problems, and even create original works of fiction that are indistinguishable from human-authored content. This breakthrough has significant implications for education, healthcare, and creative industries, though it also raises important questions about the future of human work and the need for AI regulation.",
+      imageUrl: "https://picsum.photos/seed/tech1/400/300",
+   },
+   {
+      id: 2,
+      source: "www.bbc.com",
+      categories: ["environment", "climate"],
+      date: "Oct, 9, 2025",
+      title: "Global Leaders Commit to Net-Zero Emissions by 2040",
+      description:
+         "In a historic summit that many are calling the most significant climate conference in history, world leaders from over 150 countries have pledged ambitious climate action plans that go far beyond previous commitments. The comprehensive agreement includes massive investments totaling $5 trillion in renewable energy infrastructure, advanced carbon capture technology, and sustainable transportation systems across all continents. The deal establishes a global carbon trading system that will allow countries to buy and sell carbon credits, creating economic incentives for emission reductions. Major provisions include the phase-out of coal-fired power plants by 2035, mandatory electric vehicle adoption targets, and the creation of a $200 billion fund to help developing nations transition to clean energy. The agreement also includes strict monitoring and enforcement mechanisms, with countries facing economic sanctions if they fail to meet their targets. Environmental groups are celebrating the unprecedented scope of the agreement, while some critics argue that the timeline may be too aggressive and could lead to economic disruption in fossil fuel-dependent regions.",
+      imageUrl: "https://picsum.photos/seed/climate2/400/300",
+   },
+   {
+      id: 3,
+      source: "www.forbes.com",
+      categories: ["business", "finance"],
+      date: "Oct, 7, 2025",
+      title: "Stock Markets Hit Record Highs",
+      description:
+         "Global stock markets have reached unprecedented heights as investors respond to a perfect storm of positive economic indicators and surprisingly strong corporate earnings reports. The Dow Jones Industrial Average closed at 45,000 for the first time in history, while the S&P 500 and NASDAQ also set new records. The surge is driven by several factors including robust job growth, declining inflation rates, and breakthrough announcements from major technology companies. Corporate earnings have exceeded expectations across most sectors, with particularly strong performance in renewable energy, biotechnology, and artificial intelligence companies. Central banks' decision to maintain accommodative monetary policies while inflation remains under control has also boosted investor confidence. However, some analysts are warning of potential market volatility ahead, citing geopolitical tensions and the possibility of interest rate adjustments. The current bull market has now lasted over 15 years, making it one of the longest in history, and many investors are wondering how much higher markets can go.",
+      imageUrl: "https://picsum.photos/seed/finance3/400/300",
+   },
+   {
+      id: 4,
+      source: "www.espn.com",
+      categories: ["sports", "football"],
+      date: "Oct, 10, 2025",
+      title: "Underdog Team Wins Championship in Stunning Upset",
+      description:
+         "In what many are calling the greatest sports story of the decade, the Phoenix Rising FC, a team that was predicted to finish last in their division and had never won a playoff game in their 15-year history, has defied all odds to capture the championship title. The victory came after an intense final match that went into triple overtime, with the winning goal scored by 19-year-old rookie striker Marcus Johnson in the 127th minute of play. The team's journey to the championship was nothing short of miraculous, overcoming a 12-game losing streak early in the season and rallying from a 3-0 deficit in the semifinals. Coach Sarah Martinez, who took over the team mid-season, implemented an innovative tactical system that revolutionized the way the game is played. The victory has sparked celebrations across the city and has been credited with revitalizing the local economy, as merchandise sales have increased by 400% and season ticket sales for next year have already sold out. The team's success has also inspired a new generation of young athletes and has been featured in major sports documentaries and films.",
+      imageUrl: "https://picsum.photos/seed/sports4/400/300",
+   },
+   {
+      id: 5,
+      source: "www.nature.com",
+      categories: ["science", "medicine"],
+      date: "Oct, 6, 2025",
+      title: "New Cancer Treatment Shows Promising Results in Clinical Trials",
+      description:
+         "Medical researchers at leading cancer centers worldwide have announced a breakthrough therapy that has achieved an unprecedented 85% success rate in early clinical trials, offering new hope for patients with previously untreatable forms of cancer. The innovative treatment, called CAR-T-NK therapy, combines the precision of CAR-T cell therapy with the natural killing ability of NK (natural killer) cells to create a more effective and less toxic approach to cancer treatment. The therapy works by genetically engineering a patient's immune cells to recognize and attack cancer cells while leaving healthy tissue unharmed. In trials involving 200 patients with various types of advanced cancer, including pancreatic, lung, and brain tumors, the treatment has shown remarkable results with minimal side effects. The therapy has been particularly effective against cancers that have developed resistance to traditional treatments. The research team, led by Dr. Elena Rodriguez at the National Cancer Institute, believes this could represent a paradigm shift in cancer treatment, potentially making many forms of cancer manageable chronic conditions rather than terminal diseases. The treatment is expected to receive FDA approval within the next two years and could be available to patients by 2027.",
+      imageUrl: "https://picsum.photos/seed/medical5/400/300",
+   },
+   {
+      id: 6,
+      source: "www.space.com",
+      categories: ["space", "exploration"],
+      date: "Oct, 5, 2025",
+      title: "Mars Colony Establishes First Permanent Settlement",
+      description:
+         "SpaceX and NASA collaborate to create humanity's first sustainable off-world habitat. The colony, named New Horizon, now houses 50 astronauts and scientists who will conduct long-term research on the Red Planet. Advanced life support systems and local resource utilization technologies enable the settlement to be largely self-sufficient.",
+      imageUrl: "https://picsum.photos/seed/space6/400/300",
+   },
+   {
+      id: 7,
+      source: "www.foodnetwork.com",
+      categories: ["lifestyle", "food"],
+      date: "Oct, 4, 2025",
+      title: "Plant-Based Cuisine Revolution Transforms Restaurant Industry",
+      description:
+         "The culinary world is experiencing a major shift as innovative chefs develop plant-based dishes that rival traditional cuisine in taste and presentation. Major restaurant chains are expanding their vegan offerings, while new plant-based eateries are opening at record rates. Food critics praise the creativity and sustainability of this movement, which combines cutting-edge food science with traditional cooking techniques to create extraordinary dining experiences. Consumer demand continues to drive this transformation across the global food industry.",
+      imageUrl: "https://picsum.photos/seed/food7/400/300",
+   },
+   {
+      id: 8,
+      source: "www.theguardian.com",
+      categories: ["politics", "international"],
+      date: "Oct, 3, 2025",
+      title: "Historic Peace Agreement Signed in Middle East",
+      description:
+         "Diplomatic breakthrough brings hope for lasting stability in the region after decades of conflict.",
+      imageUrl: "https://picsum.photos/seed/peace8/400/300",
+   },
+   {
+      id: 9,
+      source: "www.wired.com",
+      categories: ["technology", "gadgets"],
+      date: "Oct, 2, 2025",
+      title: "Revolutionary Smartphone Battery Lasts for One Week",
+      description:
+         "Tech company unveils new battery technology that could change mobile device usage forever. The innovation uses advanced graphene-based materials and smart power management to extend battery life dramatically.",
+      imageUrl: "https://picsum.photos/seed/gadget9/400/300",
+   },
+   {
+      id: 10,
+      source: "www.rollingstone.com",
+      categories: ["entertainment", "music"],
+      date: "Oct, 1, 2025",
+      title: "Legendary Band Announces Surprise Reunion Tour",
+      description:
+         "Fans rejoice as iconic rock group reunites after 20-year hiatus.",
+      imageUrl: "https://picsum.photos/seed/music10/400/300",
+   },
+   {
+      id: 11,
+      source: "www.nationalgeographic.com",
+      categories: ["nature", "wildlife"],
+      date: "Sep, 30, 2025",
+      title: "Rare Species Discovered in Amazon Rainforest",
+      description:
+         "Scientists discover new primate species during expedition deep in the Amazon. The newly identified species, which has been named the Golden Cascade Monkey, displays unique social behaviors and communication patterns. Researchers emphasize the importance of protecting this pristine habitat to preserve biodiversity.",
+      imageUrl: "https://picsum.photos/seed/nature11/400/300",
+   },
+   {
+      id: 12,
+      source: "www.cnn.com",
+      categories: ["education", "innovation"],
+      date: "Sep, 29, 2025",
+      title: "Virtual Reality Transforms Classroom Learning",
+      description:
+         "Educational institutions worldwide are adopting immersive VR technology to enhance student engagement and understanding. Studies show significant improvements in retention and comprehension.",
+      imageUrl: "https://picsum.photos/seed/education12/400/300",
+   },
+   {
+      id: 13,
+      source: "www.autoblog.com",
+      categories: ["automotive", "electric-vehicles"],
+      date: "Sep, 28, 2025",
+      title: "Electric Vehicle Sales Surpass Traditional Cars for First Time",
+      description:
+         "Historic milestone reached as EVs dominate the automotive market. Major manufacturers report record sales figures as charging infrastructure expands and battery costs decrease. Industry analysts predict this trend will accelerate in coming years, fundamentally transforming transportation worldwide.",
+      imageUrl: "https://picsum.photos/seed/auto13/400/300",
+   },
+   {
+      id: 14,
+      source: "www.architecturaldigest.com",
+      categories: ["design", "architecture"],
+      date: "Sep, 27, 2025",
+      title: "Sustainable Skyscraper Generates More Energy Than It Consumes",
+      description:
+         "Innovative building design sets new standard for urban sustainability with integrated solar panels and wind turbines.",
+      imageUrl: "https://picsum.photos/seed/arch14/400/300",
+   },
+   {
+      id: 15,
+      source: "www.economist.com",
+      categories: ["economics", "global-markets"],
+      date: "Sep, 26, 2025",
+      title: "Cryptocurrency Becomes Legal Tender in Three More Nations",
+      description:
+         "Digital currencies gain mainstream acceptance as governments embrace blockchain technology for financial systems.",
+      imageUrl: "https://picsum.photos/seed/crypto15/400/300",
+   },
+   {
+      id: 16,
+      source: "www.nytimes.com",
+      categories: ["health", "research"],
+      date: "Sep, 25, 2025",
+      title: "Breakthrough in Alzheimer's Research Offers New Hope",
+      description:
+         "Scientists identify key protein mechanism that could lead to effective treatments for Alzheimer's disease and related cognitive disorders.",
+      imageUrl: "https://picsum.photos/seed/health16/400/300",
+   },
+   {
+      id: 17,
+      source: "www.washingtonpost.com",
+      categories: ["politics", "election"],
+      date: "Sep, 24, 2025",
+      title: "Record Voter Turnout Expected for Upcoming Election",
+      description:
+         "Political analysts predict historic levels of voter participation due to new digital voting options and increased civic engagement.",
+      imageUrl: "https://picsum.photos/seed/politics17/400/300",
+   },
+   {
+      id: 18,
+      source: "www.scientificamerican.com",
+      categories: ["science", "quantum"],
+      date: "Sep, 23, 2025",
+      title: "Quantum Computer Solves Problem Impossible for Classical Systems",
+      description:
+         "New quantum computing milestone demonstrates definitive quantum advantage for the first time in a practical application.",
+      imageUrl: "https://picsum.photos/seed/quantum18/400/300",
+   },
+   {
+      id: 19,
+      source: "www.fastcompany.com",
+      categories: ["business", "startup"],
+      date: "Sep, 22, 2025",
+      title: "Gen-Z Founded Startup Reaches Billion Dollar Valuation in Record Time",
+      description:
+         "Company founded by 19-year-old entrepreneur becomes fastest-growing unicorn in history with revolutionary AI-powered financial services platform.",
+      imageUrl: "https://picsum.photos/seed/startup19/400/300",
+   },
+   {
+      id: 20,
+      source: "www.travel.com",
+      categories: ["travel", "tourism"],
+      date: "Sep, 21, 2025",
+      title: "First Underwater Luxury Hotel Opens in the Maldives",
+      description:
+         "Groundbreaking resort offers guests the opportunity to stay in transparent suites 30 feet below the ocean surface with 360-degree views of marine life.",
+      imageUrl: "https://picsum.photos/seed/travel20/400/300",
+   },
+   {
+      id: 21,
+      source: "www.gameinformer.com",
+      categories: ["gaming", "entertainment"],
+      date: "Sep, 20, 2025",
+      title: "Revolutionary Neural Interface Gaming System Announced",
+      description:
+         "Next-generation console uses non-invasive brain-computer interface to create immersive gaming experiences controlled by thought alone.",
+      imageUrl: "https://picsum.photos/seed/gaming21/400/300",
+   },
+   {
+      id: 22,
+      source: "www.sciencedaily.com",
+      categories: ["science", "biology"],
+      date: "Sep, 19, 2025",
+      title: "Gene Editing Breakthrough Cures Inherited Disease",
+      description:
+         "Doctors successfully use CRISPR technology to correct genetic mutations in patients with hereditary conditions, marking a new era in medical treatment.",
+      imageUrl: "https://picsum.photos/seed/gene22/400/300",
+   },
+   {
+      id: 23,
+      source: "www.usnews.com",
+      categories: ["education", "policy"],
+      date: "Sep, 18, 2025",
+      title: "Universal Free College Program Launches in Five States",
+      description:
+         "Pilot program eliminates tuition costs for all residents at public universities and community colleges, funded through public-private partnership.",
+      imageUrl: "https://picsum.photos/seed/education23/400/300",
+   },
+   {
+      id: 24,
+      source: "www.dezeen.com",
+      categories: ["design", "sustainability"],
+      date: "Sep, 17, 2025",
+      title: "World's Largest Vertical Forest City Completed in Asia",
+      description:
+         "Innovative urban development features thousands of trees and plants integrated into residential towers, absorbing tons of CO2 and producing oxygen daily.",
+      imageUrl: "https://picsum.photos/seed/design24/400/300",
+   },
+   {
+      id: 25,
+      source: "www.nbcsports.com",
+      categories: ["sports", "olympics"],
+      date: "Sep, 16, 2025",
+      title: "Oldest Olympic Gold Medalist Sets New World Record",
+      description:
+         "55-year-old athlete defies expectations by winning gold and breaking the world record in marathon swimming at international competition.",
+      imageUrl: "https://picsum.photos/seed/olympics25/400/300",
+   },
+   {
+      id: 26,
+      source: "www.ieee.org",
+      categories: ["technology", "robotics"],
+      date: "Sep, 15, 2025",
+      title: "Humanoid Robots Join Emergency Response Teams",
+      description:
+         "Advanced robots capable of navigating hazardous environments are now being deployed alongside human rescue workers in disaster scenarios.",
+      imageUrl: "https://picsum.photos/seed/robots26/400/300",
+   },
+   {
+      id: 27,
+      source: "www.artforum.com",
+      categories: ["art", "culture"],
+      date: "Sep, 14, 2025",
+      title: "AI-Human Collaborative Art Sells for Record Price at Auction",
+      description:
+         "Pioneering artwork created through collaboration between artist and artificial intelligence system fetches unprecedented sum at prestigious auction house.",
+      imageUrl: "https://picsum.photos/seed/art27/400/300",
+   },
+   {
+      id: 28,
+      source: "www.foreignpolicy.com",
+      categories: ["politics", "international"],
+      date: "Sep, 13, 2025",
+      title: "New Economic Alliance Forms Between African Nations",
+      description:
+         "Groundbreaking agreement creates powerful trading bloc focused on technological development and resource sharing across the continent.",
+      imageUrl: "https://picsum.photos/seed/africa28/400/300",
+   },
+   {
+      id: 29,
+      source: "www.popularmechanics.com",
+      categories: ["technology", "aerospace"],
+      date: "Sep, 12, 2025",
+      title: "Supersonic Commercial Air Travel Returns After 30-Year Hiatus",
+      description:
+         "New generation of quiet, fuel-efficient supersonic passenger jets begins regular service between major global cities, cutting travel times in half.",
+      imageUrl: "https://picsum.photos/seed/plane29/400/300",
+   },
+   {
+      id: 30,
+      source: "www.healthline.com",
+      categories: ["health", "wellness"],
+      date: "Sep, 11, 2025",
+      title: "Personalized Nutrition AI Revolutionizes Health Outcomes",
+      description:
+         "Machine learning system analyzes individual gut microbiome, genetics, and lifestyle to create customized nutrition plans that dramatically improve health markers.",
+      imageUrl: "https://picsum.photos/seed/health30/400/300",
+   },
+   {
+      id: 31,
+      source: "www.newyorker.com",
+      categories: ["culture", "literature"],
+      date: "Sep, 10, 2025",
+      title: "Unknown Author's Debut Novel Becomes Global Phenomenon",
+      description:
+         "First-time writer from rural community captures worldwide attention with groundbreaking literary work that challenges conventional storytelling.",
+      imageUrl: "https://picsum.photos/seed/book31/400/300",
+   },
+   {
+      id: 32,
+      source: "www.gsmarena.com",
+      categories: ["technology", "mobile"],
+      date: "Sep, 9, 2025",
+      title: "Foldable Smartphones Finally Achieve Mass Market Adoption",
+      description:
+         "Latest generation of flexible display devices reaches price point and durability milestones that drive widespread consumer acceptance.",
+      imageUrl: "https://picsum.photos/seed/phone32/400/300",
+   },
+   {
+      id: 33,
+      source: "www.npr.org",
+      categories: ["society", "demographics"],
+      date: "Sep, 8, 2025",
+      title: "Remote Work Triggers Historic Urban-Rural Population Shift",
+      description:
+         "Census data confirms significant migration from major cities to smaller communities as work-from-anywhere policies become permanent for many industries.",
+      imageUrl: "https://picsum.photos/seed/society33/400/300",
+   },
+   {
+      id: 34,
+      source: "www.scientificamerican.com",
+      categories: ["environment", "conservation"],
+      date: "Sep, 7, 2025",
+      title: "Coral Reef Restoration Technology Shows Remarkable Success",
+      description:
+         "Innovative approach combining 3D-printed reef structures and lab-cultivated coral species achieves 400% faster reef regeneration in damaged areas.",
+      imageUrl: "https://picsum.photos/seed/coral34/400/300",
+   },
+   {
+      id: 35,
+      source: "www.variety.com",
+      categories: ["entertainment", "film"],
+      date: "Sep, 6, 2025",
+      title: "Virtual Production Revolution Transforms Film Industry",
+      description:
+         "Traditional studio filming gives way to advanced LED stage technology that renders realistic backgrounds in real-time, dramatically cutting production costs.",
+      imageUrl: "https://picsum.photos/seed/film35/400/300",
+   },
+   {
+      id: 36,
+      source: "www.agriculture.com",
+      categories: ["agriculture", "technology"],
+      date: "Sep, 5, 2025",
+      title: "Vertical Farming Network Supplies Fresh Produce to Urban Centers",
+      description:
+         "Automated indoor farming facilities located within city limits now provide 30% of fresh vegetables to metropolitan areas, reducing transportation emissions.",
+      imageUrl: "https://picsum.photos/seed/farm36/400/300",
+   },
+   {
+      id: 37,
+      source: "www.psychologytoday.com",
+      categories: ["psychology", "mental-health"],
+      date: "Sep, 4, 2025",
+      title: "New Approach to Mental Health Treatment Shows Remarkable Results",
+      description:
+         "Combination therapy integrating traditional counseling with neurological feedback technology achieves breakthrough outcomes for treatment-resistant depression.",
+      imageUrl: "https://picsum.photos/seed/mind37/400/300",
+   },
+   {
+      id: 38,
+      source: "www.sciam.com",
+      categories: ["science", "chemistry"],
+      date: "Sep, 3, 2025",
+      title: "Novel Material Captures Carbon Dioxide at Unprecedented Rates",
+      description:
+         "Researchers develop crystalline compound that absorbs CO2 directly from the atmosphere with efficiency that could significantly impact climate change mitigation.",
+      imageUrl: "https://picsum.photos/seed/chem38/400/300",
+   },
+   {
+      id: 39,
+      source: "www.whnt.com",
+      categories: ["local", "community"],
+      date: "Sep, 2, 2025",
+      title: "Small Town's Innovative Education Program Becomes National Model",
+      description:
+         "Rural community's experimental approach to skills-based learning attracts attention from education policymakers nationwide after exceptional student outcomes.",
+      imageUrl: "https://picsum.photos/seed/town39/400/300",
+   },
+   {
+      id: 40,
+      source: "www.espn.com",
+      categories: ["sports", "technology"],
+      date: "Sep, 1, 2025",
+      title: "Biometric Analysis Transforms Athletic Training and Performance",
+      description:
+         "Teams across major sports adopt comprehensive physiological monitoring systems that optimize individual training regimens and dramatically reduce injuries.",
+      imageUrl: "https://picsum.photos/seed/sports40/400/300",
+   },
+   {
+      id: 41,
+      source: "www.astronews.com",
+      categories: ["space", "astronomy"],
+      date: "Aug, 31, 2025",
+      title: "First Detailed Images of Exoplanet Atmosphere Revealed",
+      description:
+         "New space telescope captures unprecedented data on potentially habitable planet orbiting nearby star, including evidence of water vapor and methane.",
+      imageUrl: "https://picsum.photos/seed/exoplanet41/400/300",
+   },
+   {
+      id: 42,
+      source: "www.wsj.com",
+      categories: ["business", "economy"],
+      date: "Aug, 30, 2025",
+      title: "Four-Day Work Week Becomes Standard at Fortune 500 Companies",
+      description:
+         "Major corporations report increased productivity and employee satisfaction after implementing compressed work schedule without reducing salaries.",
+      imageUrl: "https://picsum.photos/seed/work42/400/300",
+   },
+   {
+      id: 43,
+      source: "www.theverge.com",
+      categories: ["technology", "computing"],
+      date: "Aug, 29, 2025",
+      title: "Molecular Computing Breakthrough Opens New Frontier in Data Storage",
+      description:
+         "Scientists demonstrate working DNA-based computing system that can store the equivalent of all human knowledge in a device the size of a sugar cube.",
+      imageUrl: "https://picsum.photos/seed/dna43/400/300",
+   },
+   {
+      id: 44,
+      source: "www.politico.com",
+      categories: ["politics", "policy"],
+      date: "Aug, 28, 2025",
+      title: "Landmark Legislation Transforms Healthcare Access Nationwide",
+      description:
+         "Bipartisan bill introduces novel approach to medical coverage that combines public and private systems to ensure universal access to essential services.",
+      imageUrl: "https://picsum.photos/seed/health44/400/300",
+   },
+   {
+      id: 45,
+      source: "www.musicradar.com",
+      categories: ["music", "technology"],
+      date: "Aug, 27, 2025",
+      title: "Neural Interface Instruments Allow Musicians to Compose Through Thought",
+      description:
+         "Revolutionary music technology translates brain activity directly into musical notation and sound, enabling new forms of composition and performance.",
+      imageUrl: "https://picsum.photos/seed/music45/400/300",
+   },
+   {
+      id: 46,
+      source: "www.discoverymagazine.com",
+      categories: ["science", "paleontology"],
+      date: "Aug, 26, 2025",
+      title: "Perfectly Preserved Dinosaur Specimen Reveals New Species Details",
+      description:
+         "Exceptional fossil discovery provides unprecedented insights into dinosaur coloration, soft tissue structure, and behavioral patterns of previously unknown species.",
+      imageUrl: "https://picsum.photos/seed/dino46/400/300",
+   },
+   {
+      id: 47,
+      source: "www.gizmodo.com",
+      categories: ["technology", "consumer"],
+      date: "Aug, 25, 2025",
+      title: "Augmented Reality Glasses Finally Replace Smartphones",
+      description:
+         "Next-generation wearable computing devices achieve mainstream adoption as primary personal technology, ending the smartphone era after nearly two decades.",
+      imageUrl: "https://picsum.photos/seed/ar47/400/300",
+   },
+   {
+      id: 48,
+      source: "www.marketwatch.com",
+      categories: ["finance", "investment"],
+      date: "Aug, 24, 2025",
+      title: "Decentralized Finance Platforms Surpass Traditional Banking in Transaction Volume",
+      description:
+         "Blockchain-based financial services handle more daily transactions than conventional banking system for first time, marking historic shift in global finance.",
+      imageUrl: "https://picsum.photos/seed/finance48/400/300",
+   },
+   {
+      id: 49,
+      source: "www.fashionista.com",
+      categories: ["fashion", "sustainability"],
+      date: "Aug, 23, 2025",
+      title: "Biodegradable Smart Fabrics Revolutionize Clothing Industry",
+      description:
+         "New textile technology combines fully compostable materials with integrated sensors and adaptive properties, addressing fashion's environmental impact.",
+      imageUrl: "https://picsum.photos/seed/fashion49/400/300",
+   },
+   {
+      id: 50,
+      source: "www.energynews.com",
+      categories: ["energy", "technology"],
+      date: "Aug, 22, 2025",
+      title: "Nuclear Fusion Power Plant Delivers Electricity to Grid",
+      description:
+         "First commercial fusion reactor achieves sustained net energy production, delivering clean power to regional electrical grid in historic engineering milestone.",
+      imageUrl: "https://picsum.photos/seed/fusion50/400/300",
+   },
+   {
+      id: 51,
+      source: "www.techradar.com",
+      categories: ["technology", "ai"],
+      date: "Aug, 21, 2025",
+      title: "Edge AI Chips Bring On-Device GPT to Phones",
+      description:
+         "Chipmakers unveil edge accelerators that run large language models entirely on smartphones, enabling offline assistants, instant translation, and privacy-preserving features without cloud latency.",
+      imageUrl: "https://picsum.photos/seed/tech51/400/300",
+   },
+   {
+      id: 52,
+      source: "www.ft.com",
+      categories: ["business", "economy"],
+      date: "Aug, 20, 2025",
+      title: "Global M&A Surges as Companies Bet on AI",
+      description:
+         "Deal activity hits a decade high with firms racing to acquire AI startups and data assets; analysts say consolidation will redefine competitive moats across sectors from retail to healthcare.",
+      imageUrl: "https://picsum.photos/seed/biz52/400/300",
+   },
+   {
+      id: 53,
+      source: "www.medscape.com",
+      categories: ["health", "medicine"],
+      date: "Aug, 19, 2025",
+      title: "Universal Flu Shot Shows Strong Multi-Season Protection",
+      description:
+         "Phase 3 data indicates a single dose provides broad immunity against diverse influenza strains over multiple seasons, potentially ending annual reformulation cycles.",
+      imageUrl: "https://picsum.photos/seed/health53/400/300",
+   },
+   {
+      id: 54,
+      source: "www.bloomberg.com",
+      categories: ["finance", "markets"],
+      date: "Aug, 18, 2025",
+      title: "Commodities Rally as Green Transition Lifts Copper, Lithium",
+      description:
+         "Renewable build-outs and EV demand push metals higher, with miners announcing new investments and recycling programs to ease supply bottlenecks.",
+      imageUrl: "https://picsum.photos/seed/markets54/400/300",
+   },
+   {
+      id: 55,
+      source: "www.nba.com",
+      categories: ["sports", "basketball"],
+      date: "Aug, 17, 2025",
+      title: "Rookie Sensation Drops Triple-Double in Summer Showcase",
+      description:
+         "The top draft pick records a historic stat line, fueling preseason hype and resetting expectations for a franchise in rebuild mode.",
+      imageUrl: "https://picsum.photos/seed/sports55/400/300",
+   },
+   {
+      id: 56,
+      source: "www.seekingalpha.com",
+      categories: ["finance", "investment"],
+      date: "Aug, 16, 2025",
+      title: "Dividend Aristocrats Expand Payouts Despite Uncertainty",
+      description:
+         "Blue-chip firms extend multi-decade streaks of dividend growth, signaling confidence in cash flows even as macro headwinds persist.",
+      imageUrl: "https://picsum.photos/seed/finance56/400/300",
+   },
+   {
+      id: 57,
+      source: "www.cnet.com",
+      categories: ["technology", "gadgets"],
+      date: "Aug, 15, 2025",
+      title: "Smart Rings Gain Health Features Once Limited to Watches",
+      description:
+         "New sensors track blood pressure, glucose trends, and sleep stages, appealing to users who want minimal wearables with maximum insights.",
+      imageUrl: "https://picsum.photos/seed/gadget57/400/300",
+   },
+   {
+      id: 58,
+      source: "www.aljazeera.com",
+      categories: ["politics", "international"],
+      date: "Aug, 14, 2025",
+      title: "Cross-Border Water Treaty Averts Regional Drought Crisis",
+      description:
+         "Neighboring nations agree to shared reservoirs, data transparency, and emergency pipelines in a landmark resource-sharing pact.",
+      imageUrl: "https://picsum.photos/seed/politics58/400/300",
+   },
+   {
+      id: 59,
+      source: "www.si.com",
+      categories: ["sports", "tennis"],
+      date: "Aug, 13, 2025",
+      title: "Unseeded Veteran Wins First Grand Slam Title",
+      description:
+         "In a fairytale run, the 31-year-old defeats three top-10 players, showcasing tactical brilliance and endurance across five-set battles.",
+      imageUrl: "https://picsum.photos/seed/tennis59/400/300",
+   },
+   {
+      id: 60,
+      source: "www.axios.com",
+      categories: ["business", "startups"],
+      date: "Aug, 12, 2025",
+      title: "Climate Tech Startup Boom Spurs New VC Megafunds",
+      description:
+         "Investors raise multi-billion-dollar vehicles targeting carbon removal, grid software, and sustainable materials amid policy tailwinds.",
+      imageUrl: "https://picsum.photos/seed/startups60/400/300",
+   },
+   {
+      id: 61,
+      source: "www.pcmag.com",
+      categories: ["technology", "computing"],
+      date: "Aug, 11, 2025",
+      title: "Open-Source OS for AI PCs Hits 1.0 Release",
+      description:
+         "A community-built desktop platform integrates privacy-first AI features, local model hubs, and hardware acceleration support out of the box.",
+      imageUrl: "https://picsum.photos/seed/compute61/400/300",
+   },
+   {
+      id: 62,
+      source: "www.natureenergy.com",
+      categories: ["energy", "research"],
+      date: "Aug, 10, 2025",
+      title: "Sodium-Ion Batteries Reach EV-Ready Energy Density",
+      description:
+         "Breakthrough cathode designs and optimized electrolytes make low-cost, cobalt-free packs viable for short-range electric vehicles and grid storage.",
+      imageUrl: "https://picsum.photos/seed/energy62/400/300",
+   },
+   {
+      id: 63,
+      source: "www.runnersworld.com",
+      categories: ["health", "fitness"],
+      date: "Aug, 9, 2025",
+      title: "AI Coaching App Helps Amateurs Qualify for Major Marathons",
+      description:
+         "Personalized plans adapt to biometrics and recovery metrics, leading to widespread PRs and improved injury prevention.",
+      imageUrl: "https://picsum.photos/seed/fitness63/400/300",
+   },
+   {
+      id: 64,
+      source: "www.wsj.com",
+      categories: ["economy", "global-markets"],
+      date: "Aug, 8, 2025",
+      title: "Supply Chains Rewire Around Regional Hubs",
+      description:
+         "Manufacturers diversify away from single-country dependence, building resilient, tech-enabled networks closer to end markets.",
+      imageUrl: "https://picsum.photos/seed/econ64/400/300",
+   },
+   {
+      id: 65,
+      source: "www.spaceflightnow.com",
+      categories: ["space", "launch"],
+      date: "Aug, 7, 2025",
+      title: "Reusable Heavy-Lifter Completes 10th Mission",
+      description:
+         "Milestone flight delivers large telescopes and lunar infrastructure with rapid turnaround and record-low cost per kilogram.",
+      imageUrl: "https://picsum.photos/seed/space65/400/300",
+   },
+   {
+      id: 66,
+      source: "www.edutopia.org",
+      categories: ["education", "innovation"],
+      date: "Aug, 6, 2025",
+      title: "Project-Based Learning Scales with AI Tutors",
+      description:
+         "Districts report higher engagement and test scores as adaptive assistants guide students through real-world, cross-curricular projects.",
+      imageUrl: "https://picsum.photos/seed/edu66/400/300",
+   },
+   {
+      id: 67,
+      source: "www.apnews.com",
+      categories: ["environment", "policy"],
+      date: "Aug, 5, 2025",
+      title: "Cities Adopt Heat Resilience Standards for New Buildings",
+      description:
+         "Updated codes require cool roofs, passive ventilation, and urban canopy targets to combat rising temperatures.",
+      imageUrl: "https://picsum.photos/seed/env67/400/300",
+   },
+   {
+      id: 68,
+      source: "www.hollywoodreporter.com",
+      categories: ["entertainment", "tv"],
+      date: "Aug, 4, 2025",
+      title: "Interactive Series Lets Viewers Co-Write Episodes with AI",
+      description:
+         "A streaming platform debuts a show where audience prompts influence plotlines, blending fan fiction with professional production.",
+      imageUrl: "https://picsum.photos/seed/tv68/400/300",
+   },
+   {
+      id: 69,
+      source: "www.arstechnica.com",
+      categories: ["technology", "security"],
+      date: "Aug, 3, 2025",
+      title: "Passkey Adoption Tops 1 Billion Accounts",
+      description:
+         "Major platforms report dramatic phishing declines as passwordless authentication becomes mainstream across devices.",
+      imageUrl: "https://picsum.photos/seed/sec69/400/300",
+   },
+   {
+      id: 70,
+      source: "www.bbc.com",
+      categories: ["science", "space"],
+      date: "Aug, 2, 2025",
+      title: "Probe Finds Subsurface Ocean on Distant Icy Moon",
+      description:
+         "Gravitational and magnetic readings suggest a briny ocean beneath the crust, raising astrobiology prospects.",
+      imageUrl: "https://picsum.photos/seed/space70/400/300",
+   },
+   {
+      id: 71,
+      source: "www.theguardian.com",
+      categories: ["society", "culture"],
+      date: "Aug, 1, 2025",
+      title: "Libraries Reborn as Community Maker Hubs",
+      description:
+         "Facilities add fabrication labs, media studios, and mentorship programs, redefining access to knowledge and tools.",
+      imageUrl: "https://picsum.photos/seed/society71/400/300",
+   },
+   {
+      id: 72,
+      source: "www.sciencedaily.com",
+      categories: ["science", "biology"],
+      date: "Jul, 31, 2025",
+      title: "Microbiome Therapy Reverses Drug Resistance",
+      description:
+         "Targeted bacterial consortia restore treatment efficacy in infections and certain cancers by modulating metabolite pathways.",
+      imageUrl: "https://picsum.photos/seed/bio72/400/300",
+   },
+   {
+      id: 73,
+      source: "www.dw.com",
+      categories: ["politics", "europe"],
+      date: "Jul, 30, 2025",
+      title: "EU Unveils AI Accountability Framework",
+      description:
+         "Rules mandate traceability, dataset audits, and red-team testing for high-risk systems, with steep penalties for noncompliance.",
+      imageUrl: "https://picsum.photos/seed/eu73/400/300",
+   },
+   {
+      id: 74,
+      source: "www.digitaltrends.com",
+      categories: ["technology", "vr-ar"],
+      date: "Jul, 29, 2025",
+      title: "Lightweight AR Headsets Hit All-Day Comfort",
+      description:
+         "New optics and microLEDs reduce weight and eye strain, accelerating enterprise workflows and consumer adoption.",
+      imageUrl: "https://picsum.photos/seed/ar74/400/300",
+   },
+   {
+      id: 75,
+      source: "www.tripleseat.com",
+      categories: ["travel", "hospitality"],
+      date: "Jul, 28, 2025",
+      title: "Hotels Add AI Concierges for Hyper-Personalized Stays",
+      description:
+         "Digital concierges curate dining, wellness, and local experiences using guest preferences and real-time city data.",
+      imageUrl: "https://picsum.photos/seed/travel75/400/300",
+   },
+   {
+      id: 76,
+      source: "www.espncricinfo.com",
+      categories: ["sports", "cricket"],
+      date: "Jul, 27, 2025",
+      title: "Record Chase Stuns Fans in Final-Over Thriller",
+      description:
+         "National side overhauls a massive target with a last-ball boundary, igniting celebrations across the cricketing world.",
+      imageUrl: "https://picsum.photos/seed/cricket76/400/300",
+   },
+   {
+      id: 77,
+      source: "www.nationalgeographic.com",
+      categories: ["environment", "wildlife"],
+      date: "Jul, 26, 2025",
+      title: "Elephant Corridors Reduce Human-Wildlife Conflict",
+      description:
+         "Satellite tracking and local stewardship restore migration routes, cutting incidents and improving livelihoods.",
+      imageUrl: "https://picsum.photos/seed/wild77/400/300",
+   },
+   {
+      id: 78,
+      source: "www.zdnet.com",
+      categories: ["technology", "software"],
+      date: "Jul, 25, 2025",
+      title: "No-Code AI Tools Empower Small Businesses",
+      description:
+         "Drag-and-drop model builders let shops automate support, inventory forecasts, and marketing without data teams.",
+      imageUrl: "https://picsum.photos/seed/software78/400/300",
+   },
+   {
+      id: 79,
+      source: "www.indiewire.com",
+      categories: ["entertainment", "film"],
+      date: "Jul, 24, 2025",
+      title: "Microbudget Film Wins Top Festival Prize",
+      description:
+         "Shot on a smartphone with a skeleton crew, the intimate drama captivates juries and secures a wide theatrical release.",
+      imageUrl: "https://picsum.photos/seed/film79/400/300",
+   },
+   {
+      id: 80,
+      source: "www.vox.com",
+      categories: ["society", "labor"],
+      date: "Jul, 23, 2025",
+      title: "Four-Day School Weeks Expand in Rural Districts",
+      description:
+         "Cost savings and teacher retention drive adoption, with early studies showing stable academic outcomes and improved morale.",
+      imageUrl: "https://picsum.photos/seed/labor80/400/300",
+   },
+   {
+      id: 81,
+      source: "www.engadget.com",
+      categories: ["technology", "robotics"],
+      date: "Jul, 22, 2025",
+      title: "Household Robots Master Dexterous Tasks",
+      description:
+         "Vision-language policies enable robots to fold laundry, load dishwashers, and adapt to cluttered homes with minimal training.",
+      imageUrl: "https://picsum.photos/seed/robots81/400/300",
+   },
+   {
+      id: 82,
+      source: "www.scmp.com",
+      categories: ["business", "asia"],
+      date: "Jul, 21, 2025",
+      title: "ASEAN Digital Payments Hit Interoperability Milestone",
+      description:
+         "Cross-border QR payments expand to millions of merchants, lowering fees and boosting tourism spending.",
+      imageUrl: "https://picsum.photos/seed/asia82/400/300",
+   },
+   {
+      id: 83,
+      source: "www.skimag.com",
+      categories: ["lifestyle", "outdoors"],
+      date: "Jul, 20, 2025",
+      title: "Year-Round Indoor Slopes Bring Alpine to Cities",
+      description:
+         "Energy-efficient domes with real snow make skiing accessible in warm climates while training the next generation of athletes.",
+      imageUrl: "https://picsum.photos/seed/outdoors83/400/300",
+   },
+   {
+      id: 84,
+      source: "www.reuters.com",
+      categories: ["economics", "policy"],
+      date: "Jul, 19, 2025",
+      title: "Universal Basic Services Pilots Expand in Major Capitals",
+      description:
+         "Cities test free transit, broadband, and primary care access to reduce inequality and stimulate growth.",
+      imageUrl: "https://picsum.photos/seed/policy84/400/300",
+   },
+   {
+      id: 85,
+      source: "www.techspot.com",
+      categories: ["technology", "hardware"],
+      date: "Jul, 18, 2025",
+      title: "Photonics Accelerators Speed Up AI Training",
+      description:
+         "Optical cores demonstrate order-of-magnitude gains on transformer workloads while slashing energy consumption.",
+      imageUrl: "https://picsum.photos/seed/hw85/400/300",
+   },
+   {
+      id: 86,
+      source: "www.vice.com",
+      categories: ["culture", "internet"],
+      date: "Jul, 17, 2025",
+      title: "Long-Form Blogging Makes a Comeback",
+      description:
+         "Creators pivot from short clips to essays and newsletters, cultivating loyal communities and ad-independent revenue.",
+      imageUrl: "https://picsum.photos/seed/internet86/400/300",
+   },
+   {
+      id: 87,
+      source: "www.eba.org",
+      categories: ["automotive", "policy"],
+      date: "Jul, 16, 2025",
+      title: "Smart Road Pilot Lowers Congestion by 30%",
+      description:
+         "Dynamic lane pricing and V2X guidance smooth traffic flows, cutting commute times and emissions in a major metro.",
+      imageUrl: "https://picsum.photos/seed/auto87/400/300",
+   },
+   {
+      id: 88,
+      source: "www.today.com",
+      categories: ["lifestyle", "food"],
+      date: "Jul, 15, 2025",
+      title: "Fermented Superfoods Trend Dominates Home Kitchens",
+      description:
+         "Kits and classes popularize kimchi, kefir, and koji, with nutritionists highlighting gut health benefits.",
+      imageUrl: "https://picsum.photos/seed/food88/400/300",
+   },
+   {
+      id: 89,
+      source: "www.aaas.org",
+      categories: ["science", "climate"],
+      date: "Jul, 14, 2025",
+      title: "Direct Air Capture Costs Fall Below $100/Ton",
+      description:
+         "Process intensification and modular designs drive historic cost reductions, unlocking scalable carbon removal pathways.",
+      imageUrl: "https://picsum.photos/seed/climate89/400/300",
+   },
+   {
+      id: 90,
+      source: "www.boardgamegeek.com",
+      categories: ["gaming", "tabletop"],
+      date: "Jul, 13, 2025",
+      title: "Co-Op Strategy Game Tops Crowdfunding Charts",
+      description:
+         "Innovative asymmetric roles and legacy mechanics captivate backers, breaking records for tabletop campaigns.",
+      imageUrl: "https://picsum.photos/seed/gaming90/400/300",
+   },
+   {
+      id: 91,
+      source: "www.goodnewsnetwork.org",
+      categories: ["community", "innovation"],
+      date: "Jul, 12, 2025",
+      title: "Neighborhood Microgrids Slash Blackouts",
+      description:
+         "Community-owned solar-plus-storage systems keep lights on during grid stress, inspiring replication in other regions.",
+      imageUrl: "https://picsum.photos/seed/community91/400/300",
+   },
+   {
+      id: 92,
+      source: "www.mckinsey.com",
+      categories: ["business", "operations"],
+      date: "Jul, 11, 2025",
+      title: "Digital Twins Become Standard in Manufacturing",
+      description:
+         "Factories simulate entire production lines, cutting defects and time-to-market while enabling predictive maintenance.",
+      imageUrl: "https://picsum.photos/seed/ops92/400/300",
+   },
+   {
+      id: 93,
+      source: "www.teenvogue.com",
+      categories: ["culture", "fashion"],
+      date: "Jul, 10, 2025",
+      title: "Upcycled Streetwear Captures Gen-Z Aesthetic",
+      description:
+         "Designers remix thrifted fabrics with NFC tags for provenance, blending sustainability with collectible culture.",
+      imageUrl: "https://picsum.photos/seed/fashion93/400/300",
+   },
+   {
+      id: 94,
+      source: "www.thewirecutter.com",
+      categories: ["consumer", "home-tech"],
+      date: "Jul, 9, 2025",
+      title: "Smart Induction Ranges Go Mainstream",
+      description:
+         "Safer, faster cooking with precise temperature control and recipe-guided automation wins over home chefs.",
+      imageUrl: "https://picsum.photos/seed/home94/400/300",
+   },
+   {
+      id: 95,
+      source: "www.cio.com",
+      categories: ["technology", "it"],
+      date: "Jul, 8, 2025",
+      title: "Enterprises Embrace Retrieval-Augmented Apps",
+      description:
+         "RAG architectures become default for internal tools, improving accuracy while keeping proprietary data secure.",
+      imageUrl: "https://picsum.photos/seed/it95/400/300",
+   },
+   {
+      id: 96,
+      source: "www.washingtonpost.com",
+      categories: ["politics", "election"],
+      date: "Jul, 7, 2025",
+      title: "Youth Turnout Surges in Local Primaries",
+      description:
+         "Expanded mail-in options and social campaigns drive first-time voter participation to record levels in city races.",
+      imageUrl: "https://picsum.photos/seed/election96/400/300",
+   },
+   {
+      id: 97,
+      source: "www.scientificamerican.com",
+      categories: ["science", "physics"],
+      date: "Jul, 6, 2025",
+      title: "Room-Temperature Superconductor Claim Passes Replication",
+      description:
+         "Independent labs reproduce zero-resistance behavior under ambient pressure, paving the way for lossless grids and magnet-free MRI.",
+      imageUrl: "https://picsum.photos/seed/physics97/400/300",
+   },
+   {
+      id: 98,
+      source: "www.theatlantic.com",
+      categories: ["society", "work"],
+      date: "Jul, 5, 2025",
+      title: "Second Careers at 50 Become the Norm",
+      description:
+         "Lifelong learning programs and remote roles enable midlife reinvention, reshaping notions of retirement and vocation.",
+      imageUrl: "https://picsum.photos/seed/work98/400/300",
+   },
+   {
+      id: 99,
+      source: "www.autocar.co.uk",
+      categories: ["automotive", "electric-vehicles"],
+      date: "Jul, 4, 2025",
+      title: "$18,000 EV Launch Promises Mass Adoption",
+      description:
+         "A compact hatchback with fast charging and 300-km range hits European markets, undercutting rivals and enticing first-time buyers.",
+      imageUrl: "https://picsum.photos/seed/ev99/400/300",
+   },
+   {
+      id: 100,
+      source: "www.hbr.org",
+      categories: ["business", "leadership"],
+      date: "Jul, 3, 2025",
+      title: "Teams Outperform with Human+AI Pairing",
+      description:
+         "Studies show decision quality rises when employees are trained to critique and complement AI outputs rather than defer to them.",
+      imageUrl: "https://picsum.photos/seed/lead100/400/300",
+   },
+];
+
+// US states data with abbreviations
+export const usStatesData = [
+   { name: "Alabama", code: "AL" },
+   { name: "Alaska", code: "AK" },
+   { name: "Arizona", code: "AZ" },
+   { name: "Arkansas", code: "AR" },
+   { name: "California", code: "CA" },
+   { name: "Colorado", code: "CO" },
+   { name: "Connecticut", code: "CT" },
+   { name: "Delaware", code: "DE" },
+   { name: "Florida", code: "FL" },
+   { name: "Georgia", code: "GA" },
+   { name: "Hawaii", code: "HI" },
+   { name: "Idaho", code: "ID" },
+   { name: "Illinois", code: "IL" },
+   { name: "Indiana", code: "IN" },
+   { name: "Iowa", code: "IA" },
+   { name: "Kansas", code: "KS" },
+   { name: "Kentucky", code: "KY" },
+   { name: "Louisiana", code: "LA" },
+   { name: "Maine", code: "ME" },
+   { name: "Maryland", code: "MD" },
+   { name: "Massachusetts", code: "MA" },
+   { name: "Michigan", code: "MI" },
+   { name: "Minnesota", code: "MN" },
+   { name: "Mississippi", code: "MS" },
+   { name: "Missouri", code: "MO" },
+   { name: "Montana", code: "MT" },
+   { name: "Nebraska", code: "NE" },
+   { name: "Nevada", code: "NV" },
+   { name: "New Hampshire", code: "NH" },
+   { name: "New Jersey", code: "NJ" },
+   { name: "New Mexico", code: "NM" },
+   { name: "New York", code: "NY" },
+   { name: "North Carolina", code: "NC" },
+   { name: "North Dakota", code: "ND" },
+   { name: "Ohio", code: "OH" },
+   { name: "Oklahoma", code: "OK" },
+   { name: "Oregon", code: "OR" },
+   { name: "Pennsylvania", code: "PA" },
+   { name: "Rhode Island", code: "RI" },
+   { name: "South Carolina", code: "SC" },
+   { name: "South Dakota", code: "SD" },
+   { name: "Tennessee", code: "TN" },
+   { name: "Texas", code: "TX" },
+   { name: "Utah", code: "UT" },
+   { name: "Vermont", code: "VT" },
+   { name: "Virginia", code: "VA" },
+   { name: "Washington", code: "WA" },
+   { name: "West Virginia", code: "WV" },
+   { name: "Wisconsin", code: "WI" },
+   { name: "Wyoming", code: "WY" },
+];
+
+// Define Canada provinces/territories data
+export const canadaStatesData = [
+   { name: "Alberta", code: "Alberta" },
+   { name: "British Columbia", code: "British Columbia" },
+   { name: "Manitoba", code: "Manitoba" },
+   { name: "New Brunswick", code: "New Brunswick" },
+   { name: "Newfoundland and Labrador", code: "Newfoundland and Labrador" },
+   { name: "Nova Scotia", code: "Nova Scotia" },
+   { name: "Ontario", code: "Ontario" },
+   { name: "Prince Edward Island", code: "Prince Edward Island" },
+   { name: "Quebec", code: "Quebec" },
+   { name: "Saskatchewan", code: "Saskatchewan" },
+   { name: "Northwest Territories", code: "Northwest Territories" },
+   { name: "Nunavut", code: "Nunavut" },
+   { name: "Yukon", code: "Yukon" },
+];
+
+// Define Indian states and union territories data
+export const indiaStatesData = [
+   // States (28)
+   { name: "Andhra Pradesh", code: "Andhra Pradesh" },
+   { name: "Arunachal Pradesh", code: "Arunachal Pradesh" },
+   { name: "Assam", code: "Assam" },
+   { name: "Bihar", code: "Bihar" },
+   { name: "Chhattisgarh", code: "Chhattisgarh" },
+   { name: "Goa", code: "Goa" },
+   { name: "Gujarat", code: "Gujarat" },
+   { name: "Haryana", code: "Haryana" },
+   { name: "Himachal Pradesh", code: "Himachal Pradesh" },
+   { name: "Jharkhand", code: "Jharkhand" },
+   { name: "Karnataka", code: "Karnataka" },
+   { name: "Kerala", code: "Kerala" },
+   { name: "Madhya Pradesh", code: "Madhya Pradesh" },
+   { name: "Maharashtra", code: "Maharashtra" },
+   { name: "Manipur", code: "Manipur" },
+   { name: "Meghalaya", code: "Meghalaya" },
+   { name: "Mizoram", code: "Mizoram" },
+   { name: "Nagaland", code: "Nagaland" },
+   { name: "Odisha", code: "Odisha" },
+   { name: "Punjab", code: "Punjab" },
+   { name: "Rajasthan", code: "Rajasthan" },
+   { name: "Sikkim", code: "Sikkim" },
+   { name: "Tamil Nadu", code: "Tamil Nadu" },
+   { name: "Telangana", code: "Telangana" },
+   { name: "Tripura", code: "Tripura" },
+   { name: "Uttar Pradesh", code: "Uttar Pradesh" },
+   { name: "Uttarakhand", code: "Uttarakhand" },
+
+   // Union Territories (8)
+   { name: "Andaman and Nicobar Islands", code: "Andaman and Nicobar Islands" },
+   { name: "Chandigarh", code: "Chandigarh" },
+   {
+      name: "Dadra and Nagar Haveli and Daman and Diu",
+      code: "Dadra and Nagar Haveli and Daman and Diu",
+   },
+   {
+      name: "Delhi (National Capital Territory)",
+      code: "Delhi (National Capital Territory)",
+   },
+   { name: "Jammu and Kashmir", code: "Jammu and Kashmir" },
+   { name: "Ladakh", code: "Ladakh" },
+   { name: "Lakshadweep", code: "Lakshadweep" },
+   { name: "Puducherry", code: "Puducherry" },
+];
+
+// Define Pakistan states/provinces data
+export const pakistanStatesData = [
+   { name: "Balochistan", code: "Balochistan" },
+   { name: "Gilgit-Baltistan", code: "GilGit" },
+   { name: "Khyber Pakhtunkhwa", code: "KPK" },
+   { name: "Punjab", code: "Punjab" },
+   { name: "Sindh", code: "Sindh" },
+];
+
+// Find country IDs from our countries array
+const usCountry = countries.find((country) => country.countryCode === "US");
+const usCountryId = usCountry ? usCountry.id : "1";
+
+const canadaCountry = countries.find((country) => country.countryCode === "CA");
+const canadaCountryId = canadaCountry ? canadaCountry.id : "7";
+
+const indiaCountry = countries.find((country) => country.countryCode === "IN");
+const indiaCountryId = indiaCountry ? indiaCountry.id : "11";
+
+const pakistanCountry = countries.find(
+   (country) => country.countryCode === "PK"
+);
+const pakistanCountryId = pakistanCountry ? pakistanCountry.id : "40";
+
+// Generate states array dynamically for all countries with states
+export const states: IState[] = [
+   // US States
+   ...usStatesData.map((state, index) => ({
+      name: state.name,
+      count: getRandomCount(50, 500),
+      flag: getStateFlagUrl(state.name, "US"), // Pass state name instead of code for US states
+      id: (index + 1).toString(),
+      countryId: usCountryId,
+   })),
+
+   // Canada Provinces/Territories
+   ...canadaStatesData.map((state, index) => ({
+      name: state.name,
+      count: getRandomCount(30, 300),
+      flag: getStateFlagUrl(state.code, "CA"),
+      id: (index + usStatesData.length + 1).toString(),
+      countryId: canadaCountryId,
+   })),
+
+   // India States
+   ...indiaStatesData.map((state, index) => ({
+      name: state.name,
+      count: getRandomCount(50, 600),
+      flag: getStateFlagUrl(state.code, "IN"),
+      id: (
+         index +
+         usStatesData.length +
+         canadaStatesData.length +
+         1
+      ).toString(),
+      countryId: indiaCountryId,
+   })),
+
+   // Pakistan Provinces
+   ...pakistanStatesData.map((state, index) => ({
+      name: state.name,
+      count: getRandomCount(30, 250),
+      flag: getStateFlagUrl(state.code, "PK"),
+      id: (
+         index +
+         usStatesData.length +
+         canadaStatesData.length +
+         indiaStatesData.length +
+         1
+      ).toString(),
+      countryId: pakistanCountryId,
+   })),
+];
+
+export interface IArticle {
+   id: number;
+   channel: string;
+   icon: string;
+   text: string;
+}
+
+export const articles: IArticle[] = [
+   {
+      id: 1,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 2,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 3,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 4,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 5,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 6,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 7,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 8,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 9,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 10,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 11,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 12,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 13,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 14,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 15,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+   {
+      id: 16,
+      icon: "/images/channel.png",
+      channel: "Top News",
+      text: "Stay updated with the latest news from around the world.",
+   },
+];

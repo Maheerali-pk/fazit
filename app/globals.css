@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+/* Fonts */
+
+/* SF Pro Display - Local font files from public/fonts */
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Light.otf") format("opentype");
+   font-weight: 300;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Regular.otf") format("opentype");
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Medium.otf") format("opentype");
+   font-weight: 500;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Semibold.otf") format("opentype");
+   font-weight: 600;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Bold.otf") format("opentype");
+   font-weight: 700;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Heavy.otf") format("opentype");
+   font-weight: 800;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF Pro Display";
+   src: url("/fonts/SF-Pro-Display-Black.otf") format("opentype");
+   font-weight: 900;
+   font-style: normal;
+   font-display: swap;
+}
+
+/* Light Theme (Default) */
+:root {
+   --background: #333333;
+   --inner-background: #272727;
+   --primary: white;
+   --text-foreground: #ffffff;
+   --bg-page: #000000;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+   --bg-main: #333333;
+   --inner-background: #272727;
+   --primary: white;
+   --foreground: #ffffff;
+   --bg-page: #000000;
+}
+[data-theme="glass"] {
+   --background: #000000;
+   --inner-background: #272a2c;
+   --foreground: #ededed;
+   --secondary: #1f2937;
+   --card-meta-text: #ffffff;
+   --card-date-text: #ffffff;
+   --card-title-text: white;
+   --card-description-text: #ffffff;
+   --card-bg-color: #48484899;
+   --icons-color: #ffffff;
+   --color-primary: #00aaff;
+   --card-bg-color-dark: #272a2c;
+   --tabs-selected-foreground: #ffffff;
+   --tabs-unselected-foreground: #ffffff;
+   --main-tabs-bg-color: #48484899;
+   --main-card-bg-color: #48484899;
+   --purple-light: #574264;
+   --purple-main: #c758ff;
+
+   --purple-input-bg-color: #3b33456a;
+   --normal-input-bg-color: #272a2c;
+}
+
+[data-theme="light"] {
+   --background: #ffffff;
+   --inner-background: #0093dd0f;
+   --foreground: #727676;
+   --secondary: #f5f5f5;
+   --card-meta-text: #727676;
+   --card-date-text: #727676;
+   --card-title-text: #1366e3;
+   --card-description-text: #727676;
+   --card-bg-color: #dceaff99;
+   --color-primary: #00aaff;
+   --icons-color: #727676;
+   --card-bg-color-dark: white;
+   --tabs-selected-foreground: #ffffff;
+   --tabs-unselected-foreground: #727676;
+   --main-tabs-bg-color: #0d99ff33;
+   --main-card-bg-color: white;
+   --purple-light: #dfd2fe;
+   --purple-main: #c758ffee;
+   --purple-input-bg-color: white;
+   --normal-input-bg-color: white;
+}
+
+@theme inline {
+   --color-bg-page: var(--bg-page);
+   --color-bg-main: var(--bg-main);
+   --color-inner-background: var(--inner-background);
+   --color-primary: var(--primary);
+   --color-foreground: var(--foreground);
+   --color-bg-page: var(--bg-page);
+   --font-sf: "Poppins", -apple-system, BlinkMacSystemFont, system-ui,
+      sans-serif;
+}
+* {
+   box-sizing: border-box !important;
+}
+
+.shadow-blue-main {
+   filter: drop-shadow(0 0 20px 0 rgba(0, 170, 255, 0.5)) !important;
+}
+
+/* Swiper vertical freeMode: allow slides to size to content */
+.vertical-swiper .swiper-slide {
+   height: auto !important;
+}
